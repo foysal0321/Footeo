@@ -7,6 +7,8 @@ import Allservices from "../components/services/Allservices";
 import Blog from "../components/blog/Blog";
 import Signup from "../components/signup/Signup";
 import Login from "../components/login/Login";
+import Review from "../components/review/Review";
+import Addservice from "../components/addService/Addservice";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +26,14 @@ export const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog />
+            },
+            {
+                path: '/review',
+                element: <Review />
+            },
+            {
+                path: '/addservice',
+                element: <Addservice />
             },
             {
                 path: '/signup',

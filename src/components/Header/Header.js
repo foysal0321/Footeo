@@ -16,17 +16,11 @@ const Header = () => {
     <ul className="menu menu-horizontal p-0">
       <li><Link to='/'>Home</Link></li>
       <li><Link to='/blog'>Blog</Link></li>
-      {/* <li>{user && user?.displayName}</li>
-      {
-        user ? <li><img className='h-20 w-20' src={user?.photoURL} alt="" /></li>
-      :
-      ''
-      }
-       */}
+      
       {
         user ? 
         <>
-         <li><Link to='/addservices'>Add Service</Link></li>
+         <li><Link to='/addservice'>Add Service</Link></li>
          <li><Link to='/review'>My Review</Link></li>
          <li> <button onClick={logutUser} className="btn btn-outline btn-primary">Log Out</button></li>
         </>
