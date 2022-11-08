@@ -1,3 +1,31 @@
+
+.slidee{
+    width: 100%;
+}
+.sliders img{
+    height: 650px;
+    width: 100%;
+}
+.carosel-img{
+    width: 100%;
+}
+.carosel-img::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    /* background: linear-gradient(to right , #151515, rgba(21,21,21,0)100%); */
+    background: linear-gradient(rgba(0,0,0,0.70),rgba(0,0,0,0.70));
+}
+.info{
+    width: 84%;
+    margin: 0 auto ;
+   margin-left: 100px;
+    text-align: center;
+}
 .sections {
     height: 500px;
    
