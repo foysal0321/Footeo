@@ -3,6 +3,7 @@ import Main from "../lyout/Main";
 import Home from '../components/home/Home'
 import Services from '../components/services/Services'
 import Details from "../components/services/Details";
+import Allservices from "../components/services/Allservices";
 
 export const router = createBrowserRouter([
     {
@@ -21,6 +22,12 @@ export const router = createBrowserRouter([
                 path: '/services',
                 element: <Services />
             },
+            {
+                path: '/allservices',
+                element: <Allservices />,
+                // loader: ()=> fetch(`http://localhost:5000/allservices`)
+            },
+            
             {
                 path: '/services/:id',
                 element: <Details />,

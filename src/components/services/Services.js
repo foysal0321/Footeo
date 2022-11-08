@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ServiceCard from './ServiceCard'
 import { PhotoProvider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
     const [data,setdata] = useState([]);
@@ -13,7 +14,7 @@ const Services = () => {
         .then(getData=>{
             setdata(getData)
         })
-    },)
+    },[])
     return (
         <PhotoProvider>
         <div>
@@ -22,13 +23,12 @@ const Services = () => {
                 {
                     data.map(d => <ServiceCard
                     key={d._id}
-                    data={d}
-                   
-                    >
-                      
+                    data={d}    
+                    >                   
                     </ServiceCard>)
                 }
             </div>
+           <Link to='/allservices'> <button className="btn btn-xs">See All</button></Link> 
         </div>
         </PhotoProvider>
     );
