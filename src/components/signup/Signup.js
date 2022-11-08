@@ -11,6 +11,7 @@ const Signup = () => {
         const name = form.name.value;
 
         console.log(email , name);
+        form.reset()
 
     }
 
