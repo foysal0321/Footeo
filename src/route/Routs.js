@@ -4,6 +4,7 @@ import Home from '../components/home/Home'
 import Services from '../components/services/Services'
 import Details from "../components/services/Details";
 import Allservices from "../components/services/Allservices";
+import Blog from "../components/blog/Blog";
 
 export const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
             {
                 path: '/home',
                 element: <Home />
+            },
+            {
+                path: '/blog',
+                element: <Blog />
             },
             {
                 path: '/services',
