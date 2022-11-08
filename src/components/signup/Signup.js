@@ -4,18 +4,20 @@ import { Link } from 'react-router-dom';
 import { Authcontext } from '../../context/Context';
 
 const Signup = () => {
-  const {createUser, signinGoogle} = useContext(Authcontext)
+  const {createUser, signinGoogle, updateUser} = useContext(Authcontext)
     const signupBtn =(e)=>{
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         const name = form.name.value;
+        const image = form.image.value;
 
         createUser(email,password)
         .then(result=>{
             const user = result.user;
             console.log(user);
+            updateProfile(name,image)
             form.reset();
         })
         .catch(err=> console.error(err)) 
@@ -28,6 +30,14 @@ const Signup = () => {
           console.log(user);
         })
         .catch(err=>console.error(err))
+    }
+
+    const updateProfile=(name,img)=>{
+        const profile={
+            displayName : name,
+            photoURL : img
+        }
+        updateUser(profile)
     }
 
     return (
@@ -45,15 +55,21 @@ const Signup = () => {
         </div>
         <div className="form-control">
           <label className="label">
+            <span className="label-text">Image</span>
+          </label>
+          <input type="text" name='image' placeholder="image" className="input input-bordered" required/>
+        </div>
+        <div className="form-control">
+          <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="email" name='email' placeholder="email" className="input input-bordered" />
+          <input type="email" name='email' placeholder="email" className="input input-bordered" required/>
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="password" name='password' placeholder="password" className="input input-bordered" />       
+          <input type="password" name='password' placeholder="password" className="input input-bordered" required/>       
         </div>
         <div className="form-control mt-6">
           <button className="btn btn-primary">Login</button>
