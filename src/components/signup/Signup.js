@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Authcontext } from '../../context/Context';
 
 const Signup = () => {
-  const {createUser} = useContext(Authcontext)
+  const {createUser, signinGoogle} = useContext(Authcontext)
     const signupBtn =(e)=>{
         e.preventDefault();
         const form = e.target;
@@ -20,6 +20,14 @@ const Signup = () => {
         })
         .catch(err=> console.error(err)) 
 
+    }
+    const google =()=>{
+        signinGoogle()
+        .then(result=>{
+          const user = result.user;
+          console.log(user);
+        })
+        .catch(err=>console.error(err))
     }
 
     return (
@@ -52,7 +60,7 @@ const Signup = () => {
         </div>
         </form>
         <div className="form-control mt-6">
-        <button className="btn btn-outline btn-primary">Sign In Google</button>
+        <button onClick={google} className="btn btn-outline btn-primary">Sign In Google</button>
         </div>
         <p className='text-center'>You are already added please <Link to='/login'><span className='text-orange-600 font-bold'>Log in</span></Link></p>
       </div>

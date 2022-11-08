@@ -1,10 +1,12 @@
+
 import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Authcontext } from '../../context/Context';
 
 const Login = () => {
-    const {loginUser} = useContext(Authcontext)
+    const {loginUser, signinGoogle} = useContext(Authcontext);
+    
 
     const loginBtn =(e)=>{
         e.preventDefault();
@@ -20,6 +22,15 @@ const Login = () => {
         })
         .catch(err=> console.error(err))
 
+    }
+
+    const google = ()=>{
+      signinGoogle()
+      .then(result=>{
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(err=>console.error(err))
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -45,7 +56,7 @@ const Login = () => {
         </div>
         </form>
         <div className="form-control mt-6">
-        <button className="btn btn-outline btn-primary">Sign In Google</button>
+        <button onClick={google} className="btn btn-outline btn-primary">Sign In Google</button>
         </div>
         <p className='text-center'>Are you new please <Link to='/signup'><span className='text-orange-600 font-bold'>Sign up</span></Link></p>
       </div>

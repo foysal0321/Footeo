@@ -16,11 +16,18 @@ const Header = () => {
     <ul className="menu menu-horizontal p-0">
       <li><Link to='/'>Home</Link></li>
       <li><Link to='/blog'>Blog</Link></li>
-      <li>{user?.email && user.email}</li>
       <li><Link >Services</Link></li>
-      <li><Link to='/signup'>Signup</Link></li>
+      {
+        user ? 
+         <li> <button onClick={logutUser} className="btn btn-outline btn-primary">Log Out</button></li>
+        :
+        <>
+         <li><Link to='/signup'>Signup</Link></li>
       <li><Link to='/login'>Login</Link></li>
-      <li> <button onClick={logutUser} className="btn btn-outline btn-primary">Log Out</button></li>
+        </>
+      }
+     
+     
      
      
     </ul>
