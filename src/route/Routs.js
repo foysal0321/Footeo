@@ -5,6 +5,8 @@ import Services from '../components/services/Services'
 import Details from "../components/services/Details";
 import Allservices from "../components/services/Allservices";
 import Blog from "../components/blog/Blog";
+import Signup from "../components/signup/Signup";
+import Login from "../components/login/Login";
 
 export const router = createBrowserRouter([
     {
@@ -24,15 +26,21 @@ export const router = createBrowserRouter([
                 element: <Blog />
             },
             {
+                path: '/signup',
+                element: <Signup />
+            },
+            {
+                path: '/login',
+                element: <Login />
+            },
+            {
                 path: '/services',
                 element: <Services />
             },
             {
                 path: '/allservices',
-                element: <Allservices />,
-                // loader: ()=> fetch(`http://localhost:5000/allservices`)
-            },
-            
+                element: <Allservices />,               
+            },        
             {
                 path: '/services/:id',
                 element: <Details />,
