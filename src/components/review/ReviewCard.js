@@ -5,9 +5,12 @@ import { Authcontext } from '../../context/Context';
 const ReviewCard = ({data,deleteBtn}) => {
     const{_id,price, serviceName, image,rating, coustomerName, email} = data
     const {user} = useContext(Authcontext)
+
+
     return (
-       
-             <tr>
+        <>
+hi
+        <tr>
         <th>
           <label>        
            <button onClick={()=> deleteBtn(data)} className='btn btn-ghost'>X</button>
@@ -37,6 +40,7 @@ const ReviewCard = ({data,deleteBtn}) => {
         <td>{email}</td>
       </tr>
        
+       </>
     );
 };
 

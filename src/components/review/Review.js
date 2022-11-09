@@ -9,12 +9,14 @@ const Review = () => {
     const {user} = useContext(Authcontext)
 
     const [data,setdata] = useState([]);
+    const [err,seterr] = useState('No reviews were added')
 
     useEffect(()=>{
         fetch(`http://localhost:5000/review?email=${user?.email}`)
         .then(res=>res.json())
         .then(data=>{
-            setdata(data)
+            setdata(data);
+            seterr('')
         })
     },[user?.email]);
 
@@ -43,6 +45,7 @@ const Review = () => {
             <div className="overflow-x-auto w-full">
   <table className="table w-full">
 
+  {err}
     <thead>
       <tr>
         <th>
@@ -56,15 +59,20 @@ const Review = () => {
         <th></th>
       </tr>
     </thead>
+
     <tbody>
-       {
+        {
+
         data.map(d => <ReviewCard
         key={d._id}
         data={d}
         deleteBtn={deleteBtn}
+        
         >
         </ReviewCard>)
-       }
+
+        }
+
     </tbody>  
   </table>
 </div>

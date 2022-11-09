@@ -40,8 +40,7 @@ const Details = () => {
       if(data.acknowledged){
        alert('review success')
         form.reset()
-    }
-      
+    }   
     })
     .catch(err=> console.log(err))
      
