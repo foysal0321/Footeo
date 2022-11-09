@@ -1,6 +1,9 @@
 import React from 'react';
+import {  toast } from 'react-toastify';
+import Usetitle from '../../useTitle/Usetitle';
 
 const Addservice = () => {
+  Usetitle('Add service')
 
     const addService=(e)=>{
         e.preventDefault();
@@ -29,18 +32,19 @@ const Addservice = () => {
     .then(res=> res.json())
     .then(data=>{
       if(data.acknowledged){
-       alert('review success')
+        toast.success('Service add success!', {
+          position: toast.POSITION.TOP_CENTER
+      });
         form.reset()
     }   
     })
     .catch(err=> console.log(err))
-  console.log(addBtn);
-
     }
+
     return (
-        <form onSubmit={addService}>
+        <form className='py-5 w-3/4 text-center m-auto' onSubmit={addService}>
         <h2 className='text-4xl'></h2>
-        <h4 className='text-2xl'>Your review write here </h4>
+        <h4 className='text-2xl'>Service add </h4>
        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 py-5">
        <input name='name' type="text" placeholder="Service name" className="input input-bordered w-full " />
         <input name='image' type="text" placeholder="image"  className="input input-bordered w-full " />

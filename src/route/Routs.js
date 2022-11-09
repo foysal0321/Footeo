@@ -9,6 +9,7 @@ import Signup from "../components/signup/Signup";
 import Login from "../components/login/Login";
 import Review from "../components/review/Review";
 import Addservice from "../components/addService/Addservice";
+import Privetrout from "./Privetrout";
 
 export const router = createBrowserRouter([
     {
@@ -29,11 +30,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/review',
-                element: <Review />
+                element:<Privetrout> <Review /> </Privetrout> 
             },
             {
                 path: '/addservice',
-                element: <Addservice />
+                element: <Privetrout> <Addservice /></Privetrout> 
             },
             {
                 path: '/signup',
@@ -53,7 +54,7 @@ export const router = createBrowserRouter([
             },        
             {
                 path: '/services/:id',
-                element: <Details />,
+                element:<Privetrout> <Details /> </Privetrout> ,
                 loader:({params}) => fetch(`http://localhost:5000/services/${params.id}`)
             },
 

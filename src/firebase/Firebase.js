@@ -2,12 +2,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDKoXuhJ_ygROkHTc-7LtTlUClASiHrSq8",
-  authDomain: "infetech-service.firebaseapp.com",
-  projectId: "infetech-service",
-  storageBucket: "infetech-service.appspot.com",
-  messagingSenderId: "223219285894",
-  appId: "1:223219285894:web:9be1bfa5ce2f2cc473b607"
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId
 };
 
 const app = initializeApp(firebaseConfig);

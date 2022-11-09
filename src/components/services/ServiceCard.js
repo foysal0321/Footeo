@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { PhotoView } from 'react-photo-view';
+import { useState } from 'react';
 
 const ServiceCard = ({data}) => {
     const {title,img,price, description,_id} = data;
+    
     return (
+  <>
   
     <div className="card w-96 bg-base-100 shadow-xl">
       <PhotoView key={_id} src={img}>
@@ -23,7 +26,7 @@ const ServiceCard = ({data}) => {
     
   </div>
 </div>
-
+</>
         
     );
 };

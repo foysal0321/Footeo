@@ -3,10 +3,13 @@ import { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { Authcontext } from '../../context/Context';
 import './Service.css'
+import {  toast } from 'react-toastify';
+import Usetitle from '../../useTitle/Usetitle';
 
 const Details = () => {
     const data = useLoaderData();
-    const {user} = useContext(Authcontext)
+    const {user} = useContext(Authcontext);
+    Usetitle('Service details')
 
     const review =(e)=>{
       e.preventDefault();
@@ -38,7 +41,9 @@ const Details = () => {
     .then(res=> res.json())
     .then(data=>{
       if(data.acknowledged){
-       alert('review success')
+        toast.success('Review Success!', {
+          position: toast.POSITION.TOP_CENTER
+      });
         form.reset()
     }   
     })

@@ -2,9 +2,12 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Authcontext } from '../../context/Context';
+import Usetitle from '../../useTitle/Usetitle';
 
 const Signup = () => {
-  const {createUser, signinGoogle, updateUser} = useContext(Authcontext)
+  const {createUser, signinGoogle, updateUser} = useContext(Authcontext);
+  Usetitle('Signup')
+
     const signupBtn =(e)=>{
         e.preventDefault();
         const form = e.target;
@@ -44,7 +47,7 @@ const Signup = () => {
         <div className="hero min-h-screen bg-base-200">
   <div className="hero-content flex-col lg:flex-row-reverse">  
     <div className="card flex-shrink-0 w-3/4 max-w-sm shadow-2xl bg-base-100">
-        <h2 className='text-3xl font-bold text-center py-2'>Sign Up</h2>
+        <h2 className='text-3xl font-bold text-center  mt-5'>Sign Up</h2>
       <div className="card-body">
         <form onSubmit={signupBtn}>
         <div className="form-control">

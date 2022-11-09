@@ -1,7 +1,9 @@
 import React from 'react';
+import Usetitle from '../../useTitle/Usetitle';
 import './Blog.css'
 
 const Blog = () => {
+    Usetitle('Blog')
     
     return (
 
