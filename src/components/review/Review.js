@@ -16,7 +16,28 @@ const Review = () => {
         .then(data=>{
             setdata(data)
         })
-    },[user?.email])
+    },[user?.email]);
+
+    const deleteBtn=(val)=>{
+       const confiremDelete = window.confirm(`Are you sure delete _ ${val.serviceName}`)
+       if(confiremDelete){
+        fetch(`http://localhost:5000/review/${val._id}`,{
+            method: 'DELETE',
+
+        })
+        .then(res=>res.json())
+        .then(getData=>{
+            if(getData.deletedCount > 0){
+                alert('delete success')
+                const remain = data.filter(d => d._id !== val._id);
+                setdata(remain)
+            }
+        })
+    }
+        //console.log(val._id);
+       
+    };
+
     return (
         <div>
             <div className="overflow-x-auto w-full">
@@ -40,6 +61,7 @@ const Review = () => {
         data.map(d => <ReviewCard
         key={d._id}
         data={d}
+        deleteBtn={deleteBtn}
         >
         </ReviewCard>)
        }
