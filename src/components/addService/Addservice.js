@@ -19,7 +19,7 @@ const Addservice = () => {
         rating: rating,
         description: description
     }
-    fetch(`http://localhost:5000/allservices`,{
+    fetch(`http://localhost:5000/services`,{
       method: 'POST',
       headers:{
         'content-type': 'application/json'
