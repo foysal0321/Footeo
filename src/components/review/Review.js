@@ -1,19 +1,22 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Authcontext } from '../../context/Context';
 import ReviewCard from './ReviewCard';
 
 const Review = () => {
+    const {user} = useContext(Authcontext)
 
     const [data,setdata] = useState([]);
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/review`)
+        fetch(`http://localhost:5000/review?email=${user?.email}`)
         .then(res=>res.json())
         .then(data=>{
             setdata(data)
         })
-    },[])
+    },[user?.email])
     return (
         <div>
             <div className="overflow-x-auto w-full">
