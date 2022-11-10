@@ -21,9 +21,9 @@ const Review = () => {
                }
         })
         .then(res=>{
-            if(res.status === 401 || res.status === 403){
-                return logutUser()
-             }
+            // if(res.status === 401 || res.status === 403){
+            //     console.log('ok');
+            //  }
             return res.json()
         })
 

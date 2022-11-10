@@ -13,7 +13,6 @@ const Details = () => {
 
     const {user, logutUser} = useContext(Authcontext);
     const [reviews,setreviews] = useState([]);
-    const [prereview,setprereview] = useState([])
     Usetitle('Service details')
 
 
@@ -26,7 +25,7 @@ const Details = () => {
       })
       .then(res=>{
           if(res.status === 401 || res.status === 403){
-              return logutUser()
+              console.log('ok');
            }
           return res.json()
       })
@@ -34,7 +33,7 @@ const Details = () => {
       .then(data=>{
           setreviews(data);
       })
-  },[reviews]);
+  },[user?.email, reviews]);
 
     //user send review
     const review =(e)=>{
