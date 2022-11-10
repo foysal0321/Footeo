@@ -1,15 +1,47 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { Authcontext } from '../../context/Context';
 import './Service.css'
 import {  toast } from 'react-toastify';
 import Usetitle from '../../useTitle/Usetitle';
+import { useState } from 'react';
+import DetailsReview from './DetailsReview';
 
 const Details = () => {
     const data = useLoaderData();
-    const {user} = useContext(Authcontext);
+    console.log(data);
+    const {user, logutUser} = useContext(Authcontext);
+    const [reviews,setreviews] = useState([]);
+    const [prereview,setprereview] = useState([])
     Usetitle('Service details')
+
+    //
+    fetch(`https://service-server-psi.vercel.app/review`)
+    .then(res=>res.json())
+    .then(getreview=> {
+      setprereview(getreview)
+    })
+
+
+    //get review dynamic
+    useEffect(()=>{
+      fetch(`https://service-server-psi.vercel.app/review?email=${user?.email}`,{
+          headers : {
+              authorization: `Bearer ${localStorage.getItem('token')}`
+             }
+      })
+      .then(res=>{
+          if(res.status === 401 || res.status === 403){
+              return logutUser()
+           }
+          return res.json()
+      })
+
+      .then(data=>{
+          setreviews(data);
+      })
+  },[reviews]);
 
     //user send review
     const review =(e)=>{
@@ -54,7 +86,7 @@ const Details = () => {
 
     return (
       <div className='details'>
-        <div className="card lg:card-side bg-base-100 shadow-xl">
+        <div className="card lg:card-side bg-base-100 shadow-xl gap-8">
       <figure><img src={data.img} className='' alt="Album"/></figure>
       <div className="card-body">
         <h2 className="card-title">{data.title}</h2>
@@ -66,6 +98,46 @@ const Details = () => {
       </div>
   </div>
   <br />
+  <h2 className='text-2xl'>Review: </h2>
+  {/* review */}
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-3 mt-12">   
+   {/* {
+        prereview.map((d)=>(
+            <div className="card w-96 bg-base-100 shadow-xl">          
+            <img src={d.img} alt="" />       
+        <div className="card-body">
+          <h2 className="card-title">
+        hello
+          </h2>
+          <h4 className='text-2xl'>$ {d.rating}</h4>
+              
+         </div>
+            
+            </div>
+        ))
+      } */}
+
+     {
+     reviews.map((d)=>(
+      <div className="card w-96 bg-base-100 shadow-xl">
+     <div className="card-body">
+      <div className="flex">
+      {
+                  user?.uid &&                
+                <img src={user?.photoURL || d.image} className='h-20 w-20' alt="Avatar Tailwind CSS Component" />
+                 }
+          <h2 className="card-title">{d.coustomerName}</h2>        
+      </div>
+          <p>{d.serviceName}</p>
+          <p>{d.message}</p>
+          <div className="card-actions justify-end">
+          </div>
+  </div>
+</div>
+     ))
+     }
+</div>
+
 
 {/* review from  */}
 {

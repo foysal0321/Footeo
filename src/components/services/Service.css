@@ -1,6 +1,18 @@
 
 .details{
-    padding: 60px 10px;
-    width: 800px;
-    margin: 0 auto;
+    padding: 30px 30px;
+}
+
+
+@media screen and (max-width: 550px) {
+   .item{
+    padding: 0px ;
+    margin: 0 ;
+   }
+   .details{
+    padding: 0 1px;
+    margin: 0;
+
+   }
+   
 }

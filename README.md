@@ -1,17 +1,22 @@
 
 # Project details:
- Project Name: Footeo,
-# Client side privet repo link: 
-* https://github.com
-
-# Client side privet repo link:
-* https://github.com
+ * Project Name: Footeo,
+ * Wedding website,
+ * Use : React,node,express,mongodb
 
 # Live website link:
-*  https://github.com
+*  https://infetech-service.web.app/
 
 # Vercel deploy server link:
-* https://github.com
+* https://service-server-psi.vercel.app/
+
+# Client side privet repo link: 
+* https://github.com/Porgramming-Hero-web-course/b6a11-service-review-client-side-foysal0321
+
+# Server side privet repo link:
+* https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-foysal0321
+
+
 
 
 

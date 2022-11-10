@@ -1,19 +1,40 @@
 import React from 'react';
 import { useContext } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { Authcontext } from '../../context/Context';
 
-const ReviewCard = ({data,deleteBtn,updateBtn,dataa,setdata}) => {
+const ReviewCard = ({data,deleteBtn,dataa,setdata}) => {
     const{_id,price, serviceName, image,rating, coustomerName, email,message} = data
     const {user} = useContext(Authcontext)
 
-    // const onchangUpdate =(e)=>{
-    //   const fild = e.target.name;
-    //   const value = e.target.value;
-    //   const newUser = {...data}
-    //   newUser [fild] = value
-    //  setdata(newUser)
+    const updateBtn =(val)=>{
+      
+       val.preventDefault();
 
-    // }
+       const message = val.target.message.value;
+       const review ={
+        message: message
+       }
+      //console.log(_id);
+      fetch(`http://localhost:5000/review/${_id}`,{
+          method:'PUT',
+          headers: {
+              'content-type': 'application/json',
+              authorization: `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify(review)          
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        if(data.acknowledged){
+          alert('user update')
+          console.log(data);
+        }
+          
+      })
+      .catch(err=> console.error(err))
+      console.log(data);
+  }
 
     return (
       <>
@@ -59,11 +80,7 @@ const ReviewCard = ({data,deleteBtn,updateBtn,dataa,setdata}) => {
     <form onSubmit={updateBtn}>
             <h2 className='text-4xl'></h2>
             <h4 className='text-2xl'>Your review write here </h4>
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 py-5">
-           {/* <input  name='fname' type="text" placeholder="Name" className="input input-bordered w-full " />
-            <input  name='email' type="text" placeholder="Email" readOnly defaultValue='' className="input input-bordered w-full " />
-           <input onChange={onchangUpdate} defaultValue={rating}  name='rating' type="text" placeholder="Rating" className="input input-bordered w-full " required />
-           <input  name='image' type="text" placeholder="Image" className="input input-bordered w-full " required /> */}
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 py-5">        
            </div>
            <textarea  defaultValue={message}  name='message' className="textarea textarea-bordered h-28 w-full" placeholder="Review Content"></textarea> <br />
            <button  className="btn btn-success">Submit</button>

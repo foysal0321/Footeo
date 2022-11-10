@@ -21,7 +21,7 @@ const Allservices = () => {
     },[])
     
     return (
-      <div className='ml-16'>
+      <div className='item'>
         <h3 className='text-3xl text-lime-400 text-center pt-5'>All services </h3>
        {
         loding && <button className="btn loading">loading</button>

@@ -10,6 +10,7 @@ import Login from "../components/login/Login";
 import Review from "../components/review/Review";
 import Addservice from "../components/addService/Addservice";
 import Privetrout from "./Privetrout";
+import ReviewCard from "../components/review/ReviewCard";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +58,11 @@ export const router = createBrowserRouter([
                 path: '/services/:id',
                 element: <Details />  ,
                 loader:({params}) => fetch(`https://service-server-psi.vercel.app/services/${params.id}`)
+            },
+            {
+                path: '/review/:id',
+                element: <ReviewCard />  ,
+                loader:({params}) => fetch(`http://localhost:5000/review/${params.id}`)
             },
 
         ]
