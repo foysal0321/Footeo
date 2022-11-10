@@ -1,5 +1,5 @@
+//Dynamic title 
 import { useEffect } from "react";
-
 
 const Usetitle = (title) => {
     useEffect(()=>{

@@ -9,9 +9,10 @@ import { Link } from 'react-router-dom';
 const Services = () => {
     const [data,setdata] = useState([]);
     const [loding,setloding] = useState(true);
-    
+
+    //get 3 services from database
     useEffect(()=>{
-        fetch(`http://localhost:5000/services`)
+        fetch(`https://service-server-psi.vercel.app/services`)
         .then(res=>res.json())
         .then(getData=>{
             setdata(getData)

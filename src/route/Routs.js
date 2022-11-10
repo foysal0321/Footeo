@@ -14,10 +14,11 @@ import Privetrout from "./Privetrout";
 export const router = createBrowserRouter([
     {
         path: '/',
+        errorElement: <h3 className="text-center text-3xl py-5">Page no found 404</h3>,
         element: <Main />,
         children: [
             {
-                path: '/',
+                path: '/',              
                 element: <Home />
             },
             {
@@ -54,8 +55,8 @@ export const router = createBrowserRouter([
             },        
             {
                 path: '/services/:id',
-                element:<Privetrout> <Details /> </Privetrout> ,
-                loader:({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+                element: <Details />  ,
+                loader:({params}) => fetch(`https://service-server-psi.vercel.app/services/${params.id}`)
             },
 
         ]

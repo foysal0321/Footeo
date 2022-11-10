@@ -5,6 +5,7 @@ import Usetitle from '../../useTitle/Usetitle';
 const Addservice = () => {
   Usetitle('Add service')
 
+  //add service
     const addService=(e)=>{
         e.preventDefault();
 
@@ -22,7 +23,8 @@ const Addservice = () => {
         rating: rating,
         description: description
     }
-    fetch(`http://localhost:5000/services`,{
+    //send service to database
+    fetch(`https://service-server-psi.vercel.app/services`,{
       method: 'POST',
       headers:{
         'content-type': 'application/json'

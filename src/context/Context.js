@@ -30,6 +30,7 @@ const Context = ({children}) => {
     }
 
     const logutUser = ()=>{
+        localStorage.removeItem('token')
         setloding(true)
         return signOut(auth)
     };

@@ -8,24 +8,38 @@ import {  toast } from 'react-toastify';
 import Usetitle from '../../useTitle/Usetitle';
 
 const Review = () => {  
-    const {user} = useContext(Authcontext)
+    const {user, logutUser} = useContext(Authcontext)
     const [data,setdata] = useState([]);
-    Usetitle('Review')
+    Usetitle('Review');
 
+    //user dynamic reviews
     useEffect(()=>{
-        fetch(`http://localhost:5000/review?email=${user?.email}`)
-        .then(res=>res.json())
+        fetch(`https://service-server-psi.vercel.app/review?email=${user?.email}`,{
+            headers : {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+               }
+        })
+        .then(res=>{
+            if(res.status === 401 || res.status === 403){
+                return logutUser()
+             }
+            return res.json()
+        })
+
         .then(data=>{
             setdata(data);
         })
-    },[user?.email]);
+    },[user?.email, logutUser]);
 
     //delete review 
     const deleteBtn=(val)=>{
        const confiremDelete = window.confirm(`Are you sure delete _ ${val.serviceName}`);
        if(confiremDelete){
-        fetch(`http://localhost:5000/review/${val._id}`,{
+        fetch(`https://service-server-psi.vercel.app/review/${val._id}`,{
             method: 'DELETE',
+            headers : {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
         })
         .then(res=>res.json())
         .then(getData=>{
@@ -34,7 +48,7 @@ const Review = () => {
                     position: toast.POSITION.TOP_CENTER
                 });
                 const remain = data.filter(d => d._id !== val._id);
-                setdata(remain)
+                setdata(remain);
             }
         })
     }   
@@ -43,10 +57,11 @@ const Review = () => {
     //edit review
     const updateBtn =(val)=>{
         val.preventDefault();
-        fetch(`http://localhost:5000/review/${val}`,{
+        fetch(`https://service-server-psi.vercel.app/review/${val}`,{
             method:'PUT',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(data)          
         })
@@ -60,7 +75,9 @@ const Review = () => {
     }
 
     return (
-        <div className='h-96 py-5'>
+        <div className=' py-5 p-7'>
+           Total reviews: {data.length}
+
             {data.length > 0 ?
             <div className="overflow-x-auto w-full">
             <table className="table w-full">
@@ -68,14 +85,13 @@ const Review = () => {
                 <tr>
                     <th>
                     <label>
-                    <p>Delete</p>
-                    </label>
-                    </th>
                     <th>Name</th>
+                    </label>
+                    </th>               
                     <th>Service</th>
                     <th>Email</th>
                     <th>Review</th>
-                    <th>Update</th>
+                    <th>Delete / Update</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -97,7 +113,7 @@ const Review = () => {
             :
       <h4 className='text-2xl text-center text-orange-500 py-5 mt-10'>No reviews were added!</h4>
 
-        };
+        }
      </div>
     );
 };

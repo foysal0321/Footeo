@@ -5,9 +5,7 @@ import './Blog.css'
 const Blog = () => {
     Usetitle('Blog')
     
-    return (
-
-        
+    return (   
         <div className='py-5 question'>
             <div className="q1">
                 <h4 className='text-2xl text-red-600 py-2'>1. What is the difference between SQL and NOSQL?</h4>

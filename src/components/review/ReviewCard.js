@@ -6,29 +6,25 @@ const ReviewCard = ({data,deleteBtn,updateBtn,dataa,setdata}) => {
     const{_id,price, serviceName, image,rating, coustomerName, email,message} = data
     const {user} = useContext(Authcontext)
 
-    const onchangUpdate =(e)=>{
-      const fild = e.target.name;
-      const value = e.target.value;
-      const newUser = {...data}
-      newUser [fild] = value
-     setdata(newUser)
+    // const onchangUpdate =(e)=>{
+    //   const fild = e.target.name;
+    //   const value = e.target.value;
+    //   const newUser = {...data}
+    //   newUser [fild] = value
+    //  setdata(newUser)
 
-    }
+    // }
 
     return (
-        <>
+      <>
         <tr>
         <th>
           <label>        
-           <button onClick={()=> deleteBtn(data)} className='btn btn-ghost'>X</button>
-          </label>
-        </th>
-        <td>
           <div className="flex items-center space-x-3">
             <div className="avatar">
               <div className="rounded w-24 h-24">
                 {
-                    user?.uid &&                
+                  user?.uid &&                
                 <img src={user?.photoURL || image} alt="Avatar Tailwind CSS Component" />
                  }
               </div>
@@ -38,21 +34,25 @@ const ReviewCard = ({data,deleteBtn,updateBtn,dataa,setdata}) => {
               <div className="text-sm opacity-50">Rating : {rating}</div>
             </div>
           </div>
+          </label>
+            </th>
+            <td>
+            {serviceName}
+              <br/>
+          <span className="badge badge-ghost badge-sm">Price : ${price}</span>    
         </td>
         <td>
-         {serviceName}
-          <br/>
-          <span className="badge badge-ghost badge-sm">Price : ${price}</span>
-        </td>
-        <td>{email}</td>
-        <td>{message}</td>
-        <td>
- 
-<label  htmlFor="my-modal-5" className="btn">Update</label>
+          <td>{email}</td>
+          </td>
+          <td>{message}</td>
+        {/* delete update  */}
+    <td>
+      <button onClick={()=> deleteBtn(data)} className='btn btn-ghost'>X</button>
+      <label  htmlFor="my-modal-5" className="btn btn-xs ml-2">Update</label>
 
-<input type="checkbox" id="my-modal-5" className="modal-toggle" />
-<div className="modal">
-  <div className="modal-box w-11/12 max-w-5xl">
+      <input type="checkbox" id="my-modal-5" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box w-11/12 max-w-5xl">
     {data.serviceName}
 
    {/* edit review form */}
@@ -68,17 +68,16 @@ const ReviewCard = ({data,deleteBtn,updateBtn,dataa,setdata}) => {
            <textarea  defaultValue={message}  name='message' className="textarea textarea-bordered h-28 w-full" placeholder="Review Content"></textarea> <br />
            <button  className="btn btn-success">Submit</button>
            </form>
-
-    <div className="modal-action">   
-      <label htmlFor="my-modal-5" className="btn">Close</label>
-    </div>
-  </div>
-</div>
-          </td>
+          <div className="modal-action">   
+            <label htmlFor="my-modal-5" className="btn">Close</label>
+          </div>
+        </div>
+      </div>
+      </td>
       </tr>
        
        </>
-    );
+    )
 };
 
 export default ReviewCard;

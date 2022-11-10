@@ -11,6 +11,7 @@ const Details = () => {
     const {user} = useContext(Authcontext);
     Usetitle('Service details')
 
+    //user send review
     const review =(e)=>{
       e.preventDefault();
 
@@ -31,7 +32,8 @@ const Details = () => {
         rating: rating,
         message: message
     }
-    fetch(`http://localhost:5000/review`,{
+    //send review to database
+    fetch(`https://service-server-psi.vercel.app/review`,{
       method: 'POST',
       headers:{
         'content-type': 'application/json'
@@ -48,32 +50,32 @@ const Details = () => {
     }   
     })
     .catch(err=> console.log(err))
-     
-
     }
-
 
     return (
       <div className='details'>
         <div className="card lg:card-side bg-base-100 shadow-xl">
-  <figure><img src={data.img} className='' alt="Album"/></figure>
-  <div className="card-body">
-    <h2 className="card-title">{data.title}</h2>
-    <p>{data.description}</p>
-    <p>$ {data.price}</p>
-    <div className="card-actions justify-end">
-     <Link to='/'><button className="btn btn-primary">Back Services</button></Link> 
-    </div>
+      <figure><img src={data.img} className='' alt="Album"/></figure>
+      <div className="card-body">
+        <h2 className="card-title">{data.title}</h2>
+        <p>{data.description}</p>
+        <p>$ {data.price}</p>
+        <div className="card-actions justify-end">
+        <Link to='/allservices'><button className="btn btn-primary">Back Services</button></Link> 
+        </div>
+      </div>
   </div>
-</div>
-<br />
+  <br />
 
+{/* review from  */}
+{
+  user ? 
 <div className='py-5'>
            <form onSubmit={review}>
             <h2 className='text-4xl'></h2>
             <h4 className='text-2xl'>Your review write here </h4>
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 py-5">
-           <input name='fname' type="text" placeholder="Name" className="input input-bordered w-full " />
+           <input name='fname' type="text" placeholder="Name" className="input input-bordered w-full " defaultValue={user?.displayName} />
             <input name='email' type="text" placeholder="Email" readOnly defaultValue={user?.email} className="input input-bordered w-full " />
            <input name='rating' type="text" placeholder="Rating" className="input input-bordered w-full " required />
            <input name='image' type="text" placeholder="Image" className="input input-bordered w-full " required />
@@ -82,7 +84,11 @@ const Details = () => {
            <button className="btn btn-success">Submit</button>
            </form>
         </div>
+        :
+  <h3 className='text-2xl'>Please <Link to='/login'><span className='text-orange-600'>Log In</span> </Link>   To Give Or See Review</h3>
+  }
   </div>
+  
     );
 };
 
