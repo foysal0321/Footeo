@@ -1,3 +1,22 @@
+
+# Project details:
+ Project Name: Footeo,
+# Client side privet repo link: 
+* https://github.com
+
+# Client side privet repo link:
+* https://github.com
+
+# Live website link:
+*  https://github.com
+
+# Vercel deploy server link:
+* https://github.com
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
