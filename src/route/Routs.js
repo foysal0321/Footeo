@@ -58,12 +58,8 @@ export const router = createBrowserRouter([
                 path: '/services/:id',
                 element: <Details />  ,
                 loader:({params}) => fetch(`https://service-server-psi.vercel.app/services/${params.id}`)
-            },
-            {
-                path: '/review/:id',
-                element: <ReviewCard />  ,
-                loader:({params}) => fetch(`http://localhost:5000/review/${params.id}`)
-            },
+            }
+            
 
         ]
     }

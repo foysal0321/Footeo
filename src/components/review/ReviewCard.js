@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Authcontext } from '../../context/Context';
 
-const ReviewCard = ({data,deleteBtn,dataa,setdata}) => {
+const ReviewCard = ({data,deleteBtn}) => {
     const{_id,price, serviceName, image,rating, coustomerName, email,message} = data
     const {user} = useContext(Authcontext)
 
@@ -16,7 +16,7 @@ const ReviewCard = ({data,deleteBtn,dataa,setdata}) => {
         message: message
        }
       //console.log(_id);
-      fetch(`http://localhost:5000/review/${_id}`,{
+      fetch(`https://service-server-psi.vercel.app/review/${_id}`,{
           method:'PUT',
           headers: {
               'content-type': 'application/json',

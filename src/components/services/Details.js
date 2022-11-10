@@ -10,18 +10,11 @@ import DetailsReview from './DetailsReview';
 
 const Details = () => {
     const data = useLoaderData();
-    console.log(data);
+
     const {user, logutUser} = useContext(Authcontext);
     const [reviews,setreviews] = useState([]);
     const [prereview,setprereview] = useState([])
     Usetitle('Service details')
-
-    //
-    fetch(`https://service-server-psi.vercel.app/review`)
-    .then(res=>res.json())
-    .then(getreview=> {
-      setprereview(getreview)
-    })
 
 
     //get review dynamic
@@ -101,39 +94,52 @@ const Details = () => {
   <h2 className='text-2xl'>Review: </h2>
   {/* review */}
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-3 mt-12">   
-   {/* {
-        prereview.map((d)=>(
-            <div className="card w-96 bg-base-100 shadow-xl">          
-            <img src={d.img} alt="" />       
-        <div className="card-body">
-          <h2 className="card-title">
-        hello
+   
+        
+        <div className="card w-96 bg-gray-200 shadow-xl">  
+        <div className="flex">       
+        <img className='h-20 w-20' src='https://slick-smile.web.app/static/media/avatar-svgrepo-com%20(1).1df5b8173fc7dd9aca24670017201958.svg' alt="" />    
+          <h2 className="card-title ml-3">
+          john@gmail.com
           </h2>
-          <h4 className='text-2xl'>$ {d.rating}</h4>
+           </div> 
+        <div className="card-body">
+          
+          <h4 className='text-xl'>Great service, efficient communication and a really easy way to get a mortgage with lots of help and support to get the right deal. </h4>
               
-         </div>
-            
+         </div>          
             </div>
-        ))
-      } */}
-
+        <div className="card w-96 bg-gray-200 shadow-xl">  
+        <div className="flex">       
+        <img className='h-20 w-20' src='https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg' alt="" />    
+          <h2 className="card-title ml-3">
+          doe@gmail.com
+          </h2>
+           </div> 
+        <div className="card-body">
+          
+          <h4 className='text-xl'>Excellent customer service. was very friendly, patient and helpful in helping us find what we were looking for. </h4>
+              
+         </div>          
+            </div>
+       
      {
      reviews.map((d)=>(
-      <div className="card w-96 bg-base-100 shadow-xl">
-     <div className="card-body">
-      <div className="flex">
-      {
+      <div key={d._id} className="card w-96 bg-gray-200 shadow-xl">  
+      <div className="flex">       
+         {
                   user?.uid &&                
                 <img src={user?.photoURL || d.image} className='h-20 w-20' alt="Avatar Tailwind CSS Component" />
                  }
-          <h2 className="card-title">{d.coustomerName}</h2>        
-      </div>
-          <p>{d.serviceName}</p>
-          <p>{d.message}</p>
-          <div className="card-actions justify-end">
+        <h2 className="card-title ml-3">
+      {d.email} <br />
+        </h2>     
+         </div> 
+      <div className="card-body">     
+        <h4 className='text-xl'>{d.message} </h4>
+            
+       </div>          
           </div>
-  </div>
-</div>
      ))
      }
 </div>

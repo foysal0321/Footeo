@@ -56,24 +56,24 @@ const Review = () => {
     };
 
     //edit review
-    // const updateBtn =(val)=>{
-    //     val.preventDefault();
-    //     fetch(`https://service-server-psi.vercel.app/review/${val}`,{
-    //         method:'PUT',
-    //         headers: {
-    //             'content-type': 'application/json',
-    //             authorization: `Bearer ${localStorage.getItem('token')}`
-    //         },
-    //         body: JSON.stringify(data)          
-    //     })
-    //     .then(res=>res.json())
-    //     .then(data=>{
-    //         alert('user update')
-    //         console.log(data);
-    //     })
-    //     .catch(err=> console.error(err))
-    //     //console.log(data);
-    // }
+    const updateBtn =(val)=>{
+        val.preventDefault();
+        fetch(`https://service-server-psi.vercel.app/review/${val}`,{
+            method:'PUT',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(data)          
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            alert('user update')
+            console.log(data);
+        })
+        .catch(err=> console.error(err))
+        //console.log(data);
+    }
 
     return (
         <div className=' py-5 p-7'>
@@ -101,10 +101,7 @@ const Review = () => {
                 data.map(d => <ReviewCard
                 key={d._id}
                 data={d}
-                deleteBtn={deleteBtn}
-               
-                dataa={data}
-                setdata={setdata}
+                deleteBtn={deleteBtn}              
                 >
                 </ReviewCard>)
             }
